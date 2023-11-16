@@ -18,7 +18,7 @@ export class RainbowTextDirective {
   @HostBinding('style.borderColor') bordercolor: string;
   constructor() {
     this.color = 'red';
-    this.bordercolor = 'red';
+    this.bordercolor = 'black';
   }
   @HostListener('keyup') onKeyup() {
     this.changeColors();

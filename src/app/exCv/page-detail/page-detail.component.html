@@ -1,0 +1,41 @@
+<div class="container mt-5" *ngIf="cv">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card">
+        <img
+          style="max-width: 150px; max-height: 150px"
+          src="assets/images/{{ cv.path | defaultImage }}"
+          class="card-img-top rounded-circle mx-auto d-block mt-4"
+          alt=""
+        />
+        <div class="card-body text-center">
+          <h2 class="card-title">{{ cv.firstname }} {{ cv.name }}</h2>
+          <div class="card-text">
+            <h4 class="mt-4 mb-3">
+              <i class="fa fa-clock-o"></i> Informations
+            </h4>
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td><strong>Name:</strong> {{ cv.name }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Firstname:</strong> {{ cv.firstname }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Job:</strong> {{ cv.job }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-danger mx-2" (click)="deleteCv()">
+              Delete
+            </button>
+            <button class="btn btn-primary mx-2">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

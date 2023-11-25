@@ -1,0 +1,10 @@
+<div *ngIf="cv" (click)="onSelectCv()">
+  <img
+    width="70px"
+    height="70px"
+    class="rounded-circle"
+    src="assets/images/{{ cv.path | defaultImage }}"
+    alt="{{ cv.name }}"
+  />
+  {{ cv.firstname }} {{ cv.name }}
+</div>

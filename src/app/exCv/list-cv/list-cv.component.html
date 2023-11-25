@@ -1,0 +1,12 @@
+<ol class="list-group">
+  <li
+    *ngFor="let cv of cvs"
+    class="list-group-item shadow p-2 mb-3 bg-white rounded border mb-2"
+  >
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="flex-grow-1">
+        <app-item-cv [cv]="cv" (selectCv)="cvSelected($event)"></app-item-cv>
+      </div>
+    </div>
+  </li>
+</ol>

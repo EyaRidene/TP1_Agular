@@ -1,0 +1,90 @@
+<div class="col-md-12 col-sm-12 text-center">
+  <div *ngIf="!cv">Click on a user to get details !</div>
+  <div *ngIf="cv" class="card-container">
+    <div class="card">
+      <div class="front">
+        <div class="cover">
+          <img src="assets/images/rotating_card_thumb2.png" />
+        </div>
+        <div class="user">
+          <img
+            class="img-circle"
+            src="assets/images/{{ cv.path | defaultImage }}"
+          />
+        </div>
+        <div class="content">
+          <div class="main">
+            <h3 class="name">{{ cv.name }} {{ cv.firstname }}</h3>
+            <p class="profession">{{ cv.job }}</p>
+            <p class="text-center">
+              My name is {{ cv.name }} {{ cv.firstname }} and I'm {{ cv.job }}
+            </p>
+          </div>
+          <div class="footer">
+            <i class="fa fa-mail-forward"></i> Auto Rotation
+          </div>
+        </div>
+      </div>
+      <!-- end front panel -->
+      <div class="back">
+        <div class="header">
+          <h5 class="motto">"Life is short , enjoy it the most ! "</h5>
+        </div>
+        <div class="content">
+          <div class="main">
+            <h4 class="text-center">Job Description</h4>
+            <p class="text-center">
+              Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...
+            </p>
+
+            <div class="stats-container">
+              <div class="stats">
+                <h4>235</h4>
+                <p>Followers</p>
+              </div>
+              <div class="stats">
+                <h4>114</h4>
+                <p>Following</p>
+              </div>
+              <div class="stats">
+                <h4>35</h4>
+                <p>Projects</p>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="d-flex justify-content-center mt-3">
+              <button
+                type="button"
+                class="btn btn-primary mx-2"
+                (click)="addembauche(cv.id)"
+              >
+                Embaucher
+              </button>
+              <button
+                type="button"
+                class="btn btn-info mx-2"
+                (click)="navigateToDetails(cv.id)"
+              >
+                Details
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="social-links text-center">
+            <a href="https://creative-tim.com" class="facebook"
+              ><i class="fa fa-facebook fa-fw"></i
+            ></a>
+            <a href="https://creative-tim.com" class="google"
+              ><i class="fa fa-google-plus fa-fw"></i
+            ></a>
+            <a href="https://creative-tim.com" class="twitter"
+              ><i class="fa fa-twitter fa-fw"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

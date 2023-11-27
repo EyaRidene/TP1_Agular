@@ -1,52 +1,66 @@
-import { Injectable } from '@angular/core';
-import { Cv } from '../model/cv.model';
-import { EmbaucheService } from './embauche.service';
+import { Observable, Subject, map, of, catchError } from 'rxjs';
+import { Cv } from '../model/cv';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { Personne } from '../model/personne.model';
+import { Personne } from '../model/personne';
+import { EmbaucheService } from './embauche.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CvService {
-  private selectCvSubject = new Subject<Cv>();
   private link = 'https://apilb.tridevs.net/api/personnes';
-  selectCv$ = this.selectCvSubject.asObservable();
-  private cvs: Cv[] = [
-    new Cv(1, 'Ridene', 'Eya', 'eya.jpg', 'Student'),
-    new Cv(2, 'Ksontini', 'Mariem', 'mariem.jpg', 'Model'),
-    new Cv(3, 'Mourali', 'Sandra', 'sandra.jpg', 'scientist'),
-    new Cv(4, 'Hadded', 'Hani', 'hani.jpg', 'Doctor'),
-    new Cv(5, 'Nefzi', 'Mahmoud', '', 'programmer'),
+  private selectCv$: Subject<Cv> = new Subject();
+  cv$: Observable<Cv>;
+
+  cvs: Cv[] = [
+    new Cv(1, 'sellaouti', 'aymen', 'as.jpg'),
+    new Cv(2, 'sellaouti', 'skander', 'cv.png'),
+    new Cv(2, 'Dhaouadi', 'yassine', ''),
+    new Cv(2, 'Mourali', 'sandra', '              '),
   ];
-
   constructor(
-    private embaucheService: EmbaucheService,
-    private httpClient: HttpClient
-  ) {}
-  getCvs(): Cv[] {
-    return this.cvs;
+    private httpClient: HttpClient,
+    private embaucheService: EmbaucheService
+  ) {
+    this.cv$ = this.selectCv$.asObservable();
   }
 
-  getPersonnesFromApi(): Observable<Personne[]> {
-    return this.httpClient.get<Personne[]>(this.link);
+  getCvs(): Observable<Cv[]> {
+    return this.httpClient.get<Cv[]>(this.url).pipe(
+      map((cvs) => {
+        this.cvs = cvs;
+        return cvs;
+      }),
+      catchError(() => {
+        return of(this.cvs);
+      })
+    );
   }
 
+  getCvById(id: number): Observable<Cv | null> {
+    return this.httpClient.get<Cv>(this.link + id).pipe(
+      map((cv) => cv),
+      catchError((err) => {
+        if (err.status == 0) {
+          const cv = this.cvs.find((cv) => cv.id == id);
+          if (cv) return of(cv);
+        }
+        return of(null);
+      })
+    );
+  }
   selectCv(cv: Cv) {
-    this.selectCvSubject.next(cv);
+    this.selectCv$.next(cv);
   }
 
-  getCvById(id: number) {
-    return this.cvs.find((cv) => cv.id === id);
-  }
-
-  deleteCv(id: number): void {
+  handleDeleteError(id: number): void {
     const index = this.cvs.findIndex((cv) => cv.id === id);
-    if (this.embaucheService.getCvById(id)) {
-      this.embaucheService.deleteEmbauche(id);
-    }
     if (index !== -1) {
       this.cvs.splice(index, 1);
     }
+    this.embaucheService.deleteCv(id);
+  }
+
+  deleteCv(id: number): Observable<any> {
+    return this.httpClient.delete(this.link + id);
   }
 }

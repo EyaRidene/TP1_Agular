@@ -1,41 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Cv } from '../model/cv.model';
+import { Component, OnInit, inject } from '@angular/core';
+import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
+import { Observable, distinctUntilChanged } from 'rxjs';
 import { EmbaucheService } from '../services/embauche.service';
+import { Personne } from '../model/personne';
 import { ToastrService } from 'ngx-toastr';
-import { Personne } from '../model/personne.model';
-import { distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-cv',
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.css'],
 })
-export class CvComponent {
+export class CvComponent implements OnInit {
   nb = 0;
   cvs: Cv[] = [];
+  embaucheService = inject(EmbaucheService);
+  embauches$: Observable<Cv[]> = this.embaucheService.embauches$;
 
-  constructor(
-    public cvService: CvService,
-    public embaucheService: EmbaucheService,
-    private toastr: ToastrService
-  ) {}
-  selectedCv: Cv | null = null;
+  constructor(private cvService: CvService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.cvService.getPersonnesFromApi().subscribe(
-      (personnes) => {
-        this.cvs = personnes;
-      },
-      (error) => {
-        console.log(error);
-        this.toastr.error('Le fetch api a échoué');
-        this.cvs = this.cvService.getCvs();
-      }
-    );
-  }
-
-  showDetails(id: number) {
-    this.selectedCv = this.cvService.getCvById(id) || null;
+    this.cvs = this.cvService.getCvs();
   }
 }

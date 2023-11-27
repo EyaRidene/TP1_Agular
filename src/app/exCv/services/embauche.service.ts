@@ -1,36 +1,44 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Cv } from '../model/cv';
 import { ToastrService } from 'ngx-toastr';
-import { Cv } from '../model/cv.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmbaucheService {
-  private embauches: Cv[] = [];
+  cvsEmbauche: Cv[] = [];
 
-  constructor(private toastr: ToastrService) {}
+  toast = inject(ToastrService);
 
-  getEmbauches(): Cv[] {
-    return this.embauches;
+  getEmbauches$ = new BehaviorSubject<Cv[]>([]);
+  embauches$: Observable<Cv[]>;
+
+  constructor() {
+    this.embauches$ = this.getEmbauches$.asObservable();
   }
 
-  getCvById(id: number) {
-    return this.embauches.find((cv) => cv.id === id);
-  }
+  embaucher(cv: Cv) {
+    var embauches = this.getEmbauches$.value;
+    if (embauches.findIndex((c) => c.id == cv.id) == -1) {
+      embauches = [...embauches, cv];
+      this.getEmbauches$.next(embauches);
 
-  embaucher(cv: Cv): void {
-    if (this.embauches.find((e) => e.id === cv.id)) {
-      this.toastr.warning('Person is already hired!', 'Warning');
+      this.toast.success(`Le candidat ${cv.firstname} ${cv.name} a été ajouté`);
     } else {
-      this.embauches.push(cv);
-      this.toastr.success('Person successfully hired!', 'Success');
+      this.toast.warning(
+        `Le candidat ${cv.firstname} ${cv.name} est déja embauché`
+      );
     }
   }
 
-  deleteEmbauche(id: number): void {
-    const index = this.embauches.findIndex((cv) => cv.id === id);
-    if (index !== -1) {
-      this.embauches.splice(index, 1);
-    }
+  getAllEmbauches() {
+    return this.getEmbauches$.value;
+  }
+
+  deleteCv(id: number) {
+    var embauches = this.getEmbauches$.value;
+    const index = embauches.findIndex((cv) => cv.id == id);
+    if (index !== -1) embauches.splice(index, 1);
   }
 }

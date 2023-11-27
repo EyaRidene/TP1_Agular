@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Cv } from '../../model/cv.model';
-import { CvService } from '../../services/cv.service';
-import { EmbaucheService } from '../../services/embauche.service';
-//import { CvApiService } from '../../services/cv-api.service';
+import { Cv } from '../model/cv.model';
+import { CvService } from '../services/cv.service';
+import { EmbaucheService } from '../services/embauche.service';
+import { ToastrService } from 'ngx-toastr';
+import { Personne } from '../model/personne.model';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-cv',
@@ -10,41 +12,30 @@ import { EmbaucheService } from '../../services/embauche.service';
   styleUrls: ['./cv.component.css'],
 })
 export class CvComponent {
+  nb = 0;
+  cvs: Cv[] = [];
+
   constructor(
     public cvService: CvService,
-    public embaucheService: EmbaucheService
+    public embaucheService: EmbaucheService,
+    private toastr: ToastrService
   ) {}
-
-  cvs: Cv[] = this.cvService.getCvs();
-
   selectedCv: Cv | null = null;
 
-  /*ngOnInit(): void {
-    this.loadCvs();
-  }*/
+  ngOnInit(): void {
+    this.cvService.getPersonnesFromApi().subscribe(
+      (personnes) => {
+        this.cvs = personnes;
+      },
+      (error) => {
+        console.log(error);
+        this.toastr.error('Le fetch api a échoué');
+        this.cvs = this.cvService.getCvs();
+      }
+    );
+  }
 
   showDetails(id: number) {
     this.selectedCv = this.cvService.getCvById(id) || null;
   }
-
-  addEmploye(id: number) {
-    const selectedCv = this.cvService.getCvById(id);
-
-    if (selectedCv) {
-      this.embaucheService.embaucher(selectedCv);
-    } else {
-      console.error(`No CV found for id ${id}`);
-    }
-  }
-
-  /*private loadCvs(): void {
-    this.cvApiService.getCvs().subscribe(
-      (data) => {
-        this.cvs = data;
-      },
-      (error) => {
-        console.error('Error in API response:', error);
-      }
-    );
-  }*/
 }

@@ -3,10 +3,7 @@
     <app-list-cv [cvs]="cvs" (forwardCv)="showDetails($event)"></app-list-cv>
   </div>
   <div class="col-md-6 col-sm-9">
-    <app-detail-cv
-      [cv]="selectedCv"
-      (addEmploye)="addEmploye($event)"
-    ></app-detail-cv>
+    <app-detail-cv [cv]="selectedCv"></app-detail-cv>
   </div>
 </div>
 <div class="row">

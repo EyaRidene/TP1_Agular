@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { Cv } from '../../model/cv.model';
+import { Cv } from '../model/cv.model';
 
 @Component({
   selector: 'app-item-cv',

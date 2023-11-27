@@ -1,8 +1,7 @@
-// cv-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CvService } from '../../services/cv.service';
-import { Cv } from '../../model/cv.model';
+import { CvService } from '../services/cv.service';
+import { Cv } from '../model/cv.model';
 
 @Component({
   selector: 'app-page-detail',

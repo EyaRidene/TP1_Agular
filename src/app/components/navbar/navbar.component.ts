@@ -1,7 +1,5 @@
 // navbar.component.ts
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  constructor() {}
+  /*constructor() {}
 
   private authService: AuthService = inject(AuthService);
   router: Router = inject(Router);
@@ -28,5 +26,5 @@ export class NavbarComponent {
     } else {
       alert('An error has occurred. Please try again !');
     }
-  }
+  }*/
 }

@@ -6,11 +6,4 @@ import { Cv } from '../model/cv.model';
   templateUrl: './item-cv.component.html',
   styleUrls: ['./item-cv.component.css'],
 })
-export class ItemCvComponent {
-  @Input() cv: Cv | null = null;
-  @Output()
-  selectCv = new EventEmitter<number>();
-  onSelectCv() {
-    this.selectCv.emit(this.cv?.id);
-  }
-}
+export class ItemCvComponent {}

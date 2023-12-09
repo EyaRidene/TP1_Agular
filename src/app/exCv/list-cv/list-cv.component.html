@@ -11,3 +11,9 @@
     <app-item-cv [cv]="cv" (selectCv)="cvSelected($event)"></app-item-cv>
   </li>
 </ol>-->
+<ol class="list-group">
+  <li class="list-group-item shadow p-2 mb-3 bg-white rounded border mb-3">
+    <app-item-cv (selectedCv)="selectCv($event)" [cv]="cvs[0]"></app-item-cv>
+    <app-item-cv (selectedCv)="selectCv($event)" [cv]="cvs[1]"></app-item-cv>
+  </li>
+</ol>

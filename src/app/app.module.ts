@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
+import { StyleComponent } from './directives/style/style.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HomeComponent } from './components/home/home.component';
     PageDetailComponent,
     LoginComponent,
     HomeComponent,
+    StyleComponent,
   ],
   imports: [
     BrowserModule,

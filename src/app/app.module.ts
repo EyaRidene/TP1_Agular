@@ -22,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { StyleComponent } from './directives/style/style.component';
 import { ClassComponent } from './directives/class/class.component';
+import { HighlightDirective } from './directives/highlight.directive';
+import { RainbowDirective } from './directives/rainbow.directive';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ClassComponent } from './directives/class/class.component';
     HomeComponent,
     StyleComponent,
     ClassComponent,
+    HighlightDirective,
+    RainbowDirective,
   ],
   imports: [
     BrowserModule,

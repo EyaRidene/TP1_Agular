@@ -21,6 +21,7 @@ import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { StyleComponent } from './directives/style/style.component';
+import { ClassComponent } from './directives/class/class.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { StyleComponent } from './directives/style/style.component';
     LoginComponent,
     HomeComponent,
     StyleComponent,
+    ClassComponent,
   ],
   imports: [
     BrowserModule,

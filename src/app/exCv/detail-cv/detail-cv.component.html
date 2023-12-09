@@ -103,10 +103,12 @@
         </div>
         <div class="content">
           <div class="main">
-            <h3 class="name">{{ cv.name }}</h3>
+            <h3 class="name">
+              {{ cv.name | titlecase }} {{ cv.firstname | titlecase }}
+            </h3>
             <p class="profession">{{ cv.job }}</p>
             <p class="text-center">
-              My name is {{ cv.name }} and I'm a {{ cv.job }}
+              My name is {{ cv.name | titlecase }} and I'm a {{ cv.job }}
             </p>
           </div>
           <div class="footer">

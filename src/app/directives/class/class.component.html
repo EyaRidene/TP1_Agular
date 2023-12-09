@@ -1,26 +1,46 @@
-<div class="container mt-4">
-  <p
-    [ngClass]="{
-      est: est,
-      real: real,
-      milan: milan
-    }"
-    style="font-size: 25px"
-  >
-    class works!
-  </p>
-  <button class="btn btn-danger" (click)="changeTeam()">Espérance</button>
-</div>
-<div class="container mt-4" style="font-size: 25px" appHighlight>
-  Je test ma directive Highlight !
-</div>
+<div class="container">
+  <div class="mt-4">
+    <p
+      [ngClass]="{
+        est: est,
+        real: real,
+        milan: milan
+      }"
+      style="font-size: 25px"
+    >
+      class works!
+    </p>
+    <button class="btn btn-danger" (click)="changeTeam()">Espérance</button>
+  </div>
+  <div class="mt-4" style="font-size: 25px" appHighlight>
+    Je test ma directive Highlight !
+  </div>
 
-<div class="container mt-4">
-  <p style="font-size: 25px">Rainbow Text :</p>
-  <input
-    type="text"
-    class="form-control"
-    style="border-width: 3px"
-    appRainbow
-  />
+  <div class="mt-4">
+    <div *ngIf="show">
+      <p style="font-size: 25px">Rainbow Text :</p>
+      <input
+        type="text"
+        class="form-control"
+        style="border-width: 3px"
+        appRainbow
+      />
+    </div>
+    <button class="btn btn-primary mt-3" (click)="show = !show">
+      Show / Hide
+    </button>
+  </div>
+
+  <div class="mt-4">
+    <p style="font-size: 25px">List of Teams :</p>
+    <ol class="list-group">
+      <li
+        style="font-size: 20px"
+        class="list-group-item"
+        *ngFor="let team of teams; let ind = index"
+      >
+        {{ team }} - {{ ind }}
+      </li>
+    </ol>
+  </div>
 </div>

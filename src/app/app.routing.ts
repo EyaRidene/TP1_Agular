@@ -10,7 +10,7 @@ import { StyleComponent } from './directives/style/style.component';
 
 const APP_ROUTES: Routes = [
   //{ path: '', component: HomeComponent },
-  //{ path: '', component: CvComponent },
+  { path: '', component: CvComponent },
   //{ path: '', component: StyleComponent },
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

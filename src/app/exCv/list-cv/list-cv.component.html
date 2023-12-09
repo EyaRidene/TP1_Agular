@@ -12,7 +12,14 @@
   </li>
 </ol>-->
 <ol class="list-group">
-  <li *ngFor="let cv of cvs" class="list-group-item shadow mb-2 border">
+  <li
+    [ngClass]="{
+      'list-group-item-primary shadow mb-2 border': isOdd,
+      'list-group-item-secondary shadow mb-2 border': !isOdd
+    }"
+    *ngFor="let cv of cvs; let isOdd = odd"
+    class="list-group-item shadow p-2 mb-3 rounded border"
+  >
     <app-item-cv (selectedCv)="selectCv($event)" [cv]="cv"></app-item-cv>
   </li>
 </ol>

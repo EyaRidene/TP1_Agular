@@ -12,13 +12,26 @@ import { RouterParamComponent } from './components/router-param/router-param.com
 
 const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'cv', component: CvComponent },
+  /*{
+    path: 'cv',component :CvComponent,
+    children: [
+      { path: ':id', component: PageDetailComponent },
+    ],
+  },*/
+  {
+    path: 'cv',
+    children: [
+      { path: '', component: CvComponent },
+      { path: ':id', component: PageDetailComponent },
+    ],
+  },
+  { path: 'cv/:id', component: PageDetailComponent },
   { path: 'ngStyle', component: StyleComponent },
   { path: 'class', component: ClassComponent },
   { path: 'color/:default', component: RouterParamComponent },
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'cv/:id', component: PageDetailComponent },
+
   { path: 'ex1', component: Ex1Component },
   { path: 'onlyHeader', component: NavbarComponent },
 ];

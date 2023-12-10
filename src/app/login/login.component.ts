@@ -1,11 +1,16 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { NgForm } from '@angular/forms';
+import { LoginData } from './model/loginData';
+import { tap } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  /*private authService: AuthService = inject(AuthService);
+  private authService: AuthService = inject(AuthService);
   constructor() {}
 
   router: Router = inject(Router);
@@ -28,6 +33,6 @@ export class LoginComponent {
         })
       )
       .subscribe();
-  }*/
-  login(loginFormulaire: any) {}
+  }
+  //login(loginFormulaire: any) {}
 }

@@ -9,7 +9,7 @@ import { LoginData } from './login/model/loginData';
   providedIn: 'root',
 })
 export class AuthService {
-  /*private user = new BehaviorSubject<User | null>(null);
+  private user = new BehaviorSubject<User | null>(null);
   user$ = this.user.asObservable();
 
   constructor(private http: HttpClient) {
@@ -59,5 +59,5 @@ export class AuthService {
       const user: User = JSON.parse(userFound);
       this.user.next(new User(user.id, user.email));
     }
-  }*/
+  }
 }

@@ -11,6 +11,7 @@ import { ClassComponent } from './directives/class/class.component';
 import { RouterParamComponent } from './components/router-param/router-param.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AddCvComponent } from './exCv/add-cv/add-cv.component';
+import { loginGuard } from './login/login.guard';
 
 const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -32,7 +33,7 @@ const APP_ROUTES: Routes = [
   { path: 'class', component: ClassComponent },
   { path: 'color/:default', component: RouterParamComponent },
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
 
   { path: 'ex1', component: Ex1Component },
   { path: 'onlyHeader', component: NavbarComponent },

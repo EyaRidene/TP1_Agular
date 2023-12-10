@@ -26,6 +26,8 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { RainbowDirective } from './directives/rainbow.directive';
 import { RouterSimulatorComponent } from './components/router-simulator/router-simulator.component';
 import { RouterParamComponent } from './components/router-param/router-param.component';
+import { ErrorComponent } from './components/error/error.component';
+import { AddCvComponent } from './exCv/add-cv/add-cv.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { RouterParamComponent } from './components/router-param/router-param.com
     RainbowDirective,
     RouterSimulatorComponent,
     RouterParamComponent,
+    ErrorComponent,
+    AddCvComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { StyleComponent } from './directives/style/style.component';
 import { ClassComponent } from './directives/class/class.component';
 import { RouterParamComponent } from './components/router-param/router-param.component';
+import { ErrorComponent } from './components/error/error.component';
+import { AddCvComponent } from './exCv/add-cv/add-cv.component';
 
 const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -22,10 +24,10 @@ const APP_ROUTES: Routes = [
     path: 'cv',
     children: [
       { path: '', component: CvComponent },
+      { path: 'add', component: AddCvComponent },
       { path: ':id', component: PageDetailComponent },
     ],
   },
-  { path: 'cv/:id', component: PageDetailComponent },
   { path: 'ngStyle', component: StyleComponent },
   { path: 'class', component: ClassComponent },
   { path: 'color/:default', component: RouterParamComponent },
@@ -34,6 +36,7 @@ const APP_ROUTES: Routes = [
 
   { path: 'ex1', component: Ex1Component },
   { path: 'onlyHeader', component: NavbarComponent },
+  { path: '**', component: ErrorComponent },
 ];
 
 export const ROUTING = RouterModule.forRoot(APP_ROUTES);

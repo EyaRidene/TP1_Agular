@@ -10,7 +10,7 @@ export class CvService {
       new Cv(2, 'mariem', 'ksontini', 'mariem.jpg', 'Model'),
       new Cv(3, 'sandra', 'mourali', 'sandra.jpg', 'Data Scientist'),
       new Cv(4, 'hani', 'hadded', 'hani.jpg', 'Developper'),
-      new Cv(4, 'mahmoud', 'nefzi', '', 'programmmer'),
+      new Cv(5, 'mahmoud', 'nefzi', '', 'programmmer'),
     ];
   }
   getCvs(): Cv[] {
@@ -19,5 +19,10 @@ export class CvService {
 
   getCvById(id: number): Cv | undefined {
     return this.cvs.find((cv) => cv.id == id);
+  }
+
+  addCv(cv: Cv): void {
+    cv.id = this.cvs.length;
+    this.cvs.push(cv);
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { PremierService } from 'src/app/services/premier.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { PremierService } from 'src/app/services/premier.service';
   providers: [PremierService], // pour avoir une autre instance du service
 })
 export class ClassComponent {
-  constructor(private premierService: PremierService) {}
+  constructor(private premierService: PremierService, private router: Router) {}
 
   teams = ['est', 'real madrid', 'milan', 'barca'];
   est = false;
@@ -24,5 +25,9 @@ export class ClassComponent {
 
   loggerData() {
     this.premierService.logger('test');
+  }
+
+  goToCv() {
+    this.router.navigate(['cv']);
   }
 }

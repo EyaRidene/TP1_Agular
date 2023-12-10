@@ -29,6 +29,7 @@ import { RouterParamComponent } from './components/router-param/router-param.com
 import { ErrorComponent } from './components/error/error.component';
 import { AddCvComponent } from './exCv/add-cv/add-cv.component';
 import { ObservableComponent } from './components/observable/observable.component';
+import { HttpComponent } from './components/http/http.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ObservableComponent } from './components/observable/observable.componen
     ErrorComponent,
     AddCvComponent,
     ObservableComponent,
+    HttpComponent,
   ],
   imports: [
     BrowserModule,

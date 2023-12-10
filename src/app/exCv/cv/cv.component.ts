@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Cv } from '../model/cv.model';
 import { PremierService } from 'src/app/services/premier.service';
 import { CvService } from '../services/cv.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cv',
@@ -14,11 +15,20 @@ export class CvComponent implements OnInit {
 
   constructor(
     private premierService: PremierService,
-    private cvService: CvService
+    private cvService: CvService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.cvs = this.cvService.getCvs();
+    this.cvService.getPersonnesFromApi().subscribe(
+      (personnes) => {
+        this.cvs = personnes;
+      },
+      (error) => {
+        this.toastr.error('Le fetch api a échoué');
+        this.cvs = this.cvService.getCvs();
+      }
+    );
     // this.premierService.addData('data from cv component');
     // this.premierService.logger(this.cvs);
   }

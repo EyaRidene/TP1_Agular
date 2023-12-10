@@ -16,4 +16,8 @@ export class CvService {
   getCvs(): Cv[] {
     return this.cvs;
   }
+
+  getCvById(id: number): Cv | undefined {
+    return this.cvs.find((cv) => cv.id == id);
+  }
 }

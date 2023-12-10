@@ -25,6 +25,7 @@ import { ClassComponent } from './directives/class/class.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RainbowDirective } from './directives/rainbow.directive';
 import { RouterSimulatorComponent } from './components/router-simulator/router-simulator.component';
+import { RouterParamComponent } from './components/router-param/router-param.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { RouterSimulatorComponent } from './components/router-simulator/router-s
     HighlightDirective,
     RainbowDirective,
     RouterSimulatorComponent,
+    RouterParamComponent,
   ],
   imports: [
     BrowserModule,

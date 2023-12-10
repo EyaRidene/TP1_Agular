@@ -8,12 +8,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { StyleComponent } from './directives/style/style.component';
 import { ClassComponent } from './directives/class/class.component';
+import { RouterParamComponent } from './components/router-param/router-param.component';
 
 const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'cv', component: CvComponent },
   { path: 'ngStyle', component: StyleComponent },
   { path: 'class', component: ClassComponent },
+  { path: 'color/:default', component: RouterParamComponent },
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'cv/:id', component: PageDetailComponent },

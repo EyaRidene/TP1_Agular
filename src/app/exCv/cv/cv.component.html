@@ -14,6 +14,30 @@
 <!--<router-outlet></router-outlet> prefixer l ensemble des routes cv -->
 <div class="row">
   <div class="col-md-6 col-sm-3">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          aria-current="page"
+          [class.active]="seniorsActive"
+          (click)="showSeniors()"
+          >Seniors</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="showJuniors()"
+          [class.active]="juniorsActive"
+          >Juniors</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-sm-3">
     <app-list-cv (selectedCv)="selectCv($event)" [cvs]="cvs"></app-list-cv>
   </div>
   <div class="col-md-6 col-sm-9">

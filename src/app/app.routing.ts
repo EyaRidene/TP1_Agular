@@ -12,6 +12,7 @@ import { RouterParamComponent } from './components/router-param/router-param.com
 import { ErrorComponent } from './components/error/error.component';
 import { AddCvComponent } from './exCv/add-cv/add-cv.component';
 import { loginGuard } from './login/login.guard';
+import { OperateursComponent } from './components/operateurs/operateurs.component';
 
 const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -37,6 +38,7 @@ const APP_ROUTES: Routes = [
 
   { path: 'ex1', component: Ex1Component },
   { path: 'onlyHeader', component: NavbarComponent },
+  { path: 'operators', component: OperateursComponent },
   { path: '**', component: ErrorComponent },
 ];
 

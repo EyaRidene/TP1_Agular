@@ -38,4 +38,8 @@ export class CvService {
   addCvApi(cv: Cv): Observable<any> {
     return this.http.post(this.link, cv);
   }
+
+  addPersonne(personne: Personne): Observable<any> {
+    return this.http.post(this.link, personne);
+  }
 }

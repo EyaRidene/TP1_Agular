@@ -30,6 +30,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { AddCvComponent } from './exCv/add-cv/add-cv.component';
 import { ObservableComponent } from './components/observable/observable.component';
 import { HttpComponent } from './components/http/http.component';
+import { OperateursComponent } from './components/operateurs/operateurs.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { HttpComponent } from './components/http/http.component';
     AddCvComponent,
     ObservableComponent,
     HttpComponent,
+    OperateursComponent,
   ],
   imports: [
     BrowserModule,

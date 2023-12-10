@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv.model';
 
 @Injectable({
@@ -6,6 +6,7 @@ import { Cv } from '../model/cv.model';
 })
 export class EmbaucheService {
   cvs: Cv[] = [];
+
   constructor() {
     this.cvs = [];
   }
@@ -13,20 +14,24 @@ export class EmbaucheService {
   getEmbauchees() {
     return this.cvs;
   }
-  embaucher(cv: Cv): void {
+
+  embaucher(cv: Cv): boolean {
     const index = this.cvs.indexOf(cv);
     if (index < 0) {
       this.cvs.push(cv);
+      return true; // Successfully hired
     } else {
-      alert(`la personne : ${cv.firstname} ${cv.name} est déja embauchée ! `);
+      return false; // Already hired
     }
   }
-  debaucher(cv: Cv): void {
+
+  debaucher(cv: Cv): boolean {
     const index = this.cvs.indexOf(cv);
-    if (index < 0) {
+    if (index >= 0) {
       this.cvs.splice(index, 1);
+      return true; // Successfully fired
     } else {
-      alert(`la personne : ${cv.firstname} ${cv.name} n'est pas embauchée !`);
+      return false; // Not hired
     }
   }
 }

@@ -13,6 +13,13 @@ export class CvComponent implements OnInit {
   cvs: Cv[] = [];
   selectedCv: Cv | null = null;
 
+  juniorCvs: Cv[] = [];
+  seniorCvs: Cv[] = [];
+
+  seniorsActive = true;
+  juniorsActive = false;
+  content: Cv[] = [];
+
   constructor(
     private premierService: PremierService,
     private cvService: CvService,
@@ -31,9 +38,29 @@ export class CvComponent implements OnInit {
     );
     // this.premierService.addData('data from cv component');
     // this.premierService.logger(this.cvs);
+
+    // @ts-ignore
+
+    // @ts-ignore
+    this.juniorCvs = this.cvs.filter((cv) => cv.age && cv.age < 40);
+    // @ts-ignore
+    this.seniorCvs = this.cvs.filter((cv) => cv.age && cv.age >= 40);
+    this.content = this.seniorCvs;
   }
 
   selectCv(cv: Cv) {
     this.selectedCv = cv;
+  }
+
+  showJuniors() {
+    this.content = this.juniorCvs;
+    console.log(this.content);
+    this.juniorsActive = true;
+    this.seniorsActive = false;
+  }
+  showSeniors() {
+    this.content = this.seniorCvs;
+    this.juniorsActive = false;
+    this.seniorsActive = true;
   }
 }

@@ -31,7 +31,8 @@ import { AddCvComponent } from './exCv/add-cv/add-cv.component';
 import { ObservableComponent } from './components/observable/observable.component';
 import { HttpComponent } from './components/http/http.component';
 import { OperateursComponent } from './components/operateurs/operateurs.component';
-
+import { ProductComponent } from './components/products/product/product.component';
+import { ProductItemComponent } from './components/products/product-item/product-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,8 @@ import { OperateursComponent } from './components/operateurs/operateurs.componen
     ObservableComponent,
     HttpComponent,
     OperateursComponent,
+    ProductItemComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

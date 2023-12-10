@@ -28,6 +28,7 @@ import { RouterSimulatorComponent } from './components/router-simulator/router-s
 import { RouterParamComponent } from './components/router-param/router-param.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AddCvComponent } from './exCv/add-cv/add-cv.component';
+import { ObservableComponent } from './components/observable/observable.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AddCvComponent } from './exCv/add-cv/add-cv.component';
     RouterParamComponent,
     ErrorComponent,
     AddCvComponent,
+    ObservableComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,36 +10,50 @@ export class CvService {
   private link = 'https://apilb.tridevs.net/api/personnes';
   constructor(private http: HttpClient) {
     this.cvs = [
-      new Cv(1, 'eya', 'ridene', 'eya.jpg', 'Software engineering Student'),
-      new Cv(2, 'mariem', 'ksontini', 'mariem.jpg', 'Model'),
-      new Cv(3, 'sandra', 'mourali', 'sandra.jpg', 'Data Scientist'),
-      new Cv(4, 'hani', 'hadded', 'hani.jpg', 'Developper'),
-      new Cv(5, 'mahmoud', 'nefzi', '', 'programmmer'),
+      new Cv(
+        1,
+        'eya',
+        'ridene',
+        'Software engineering Student',
+        22,
+        1111,
+        'eya.jpg'
+      ),
+      new Cv(2, 'mariem', 'ksontini', 'Model', 22, 1111, 'mariem.jpg'),
+      new Cv(3, 'sandra', 'mourali', 'Data Scientist', 22, 1111, 'sandra.jpg'),
+      new Cv(4, 'hani', 'hadded', 'Developer', 22, 1111, 'hani.jpg'),
+      new Cv(5, 'mahmoud', 'nefzi', '', 22, 1111, 'programmmer'),
     ];
   }
+
+  // avoir la liste des fake cvs
   getCvs(): Cv[] {
     return this.cvs;
   }
 
-  // avoir la liste des cv à partir de l api
-  getPersonnesFromApi(): Observable<Personne[]> {
-    return this.http.get<Personne[]>(this.link);
+  // avoir la liste des cv (personnes) à partir de l api - retourner un observable
+  getPersonnesFromApi(): Observable<Cv[]> {
+    return this.http.get<Cv[]>(this.link);
   }
 
-  getCvById(id: number): Cv | undefined {
+  /*getCvById(id: number): Cv | undefined {
     return this.cvs.find((cv) => cv.id == id);
+  }*/
+
+  getCvById(id: number): Observable<Cv | null> {
+    return this.http.get<Cv>(this.link + `/${id}`);
   }
 
-  addCv(cv: Cv): void {
+  /*addCv(cv: Cv): void {
     cv.id = this.cvs.length;
     this.cvs.push(cv);
-  }
+  }*/
 
-  addCvApi(cv: Cv): Observable<any> {
+  addCv(cv: Cv): Observable<any> {
     return this.http.post(this.link, cv);
   }
 
-  addPersonne(personne: Personne): Observable<any> {
-    return this.http.post(this.link, personne);
+  deleteCv(id: number) {
+    return this.http.delete(this.link + `/${id}`);
   }
 }

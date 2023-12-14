@@ -3,9 +3,9 @@ export class Cv {
     public id = 0,
     public name = '',
     public firstname = '',
-    public path = '',
-    public job?: string,
-    public cin?: number,
-    public age?: number
+    public job = '',
+    public age = 0,
+    public cin = 0,
+    public path = ''
   ) {}
 }

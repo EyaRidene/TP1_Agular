@@ -32,18 +32,15 @@ export class CvComponent implements OnInit {
         this.cvs = personnes;
       },
       (error) => {
-        this.toastr.error('Le fetch api a échoué');
+        this.toastr.error('Le fetch api a échoué !!');
+        //retourner les fake cvs
         this.cvs = this.cvService.getCvs();
       }
     );
     // this.premierService.addData('data from cv component');
     // this.premierService.logger(this.cvs);
 
-    // @ts-ignore
-
-    // @ts-ignore
     this.juniorCvs = this.cvs.filter((cv) => cv.age && cv.age < 40);
-    // @ts-ignore
     this.seniorCvs = this.cvs.filter((cv) => cv.age && cv.age >= 40);
     this.content = this.seniorCvs;
   }

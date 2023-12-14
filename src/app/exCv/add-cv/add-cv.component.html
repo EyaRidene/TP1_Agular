@@ -60,7 +60,7 @@
 
   <button
     [disabled]="formulaire.invalid"
-    (click)="addCv(formulaire)"
+    (click)="addCv(formulaire.value)"
     class="btn btn-primary"
   >
     Envoyer

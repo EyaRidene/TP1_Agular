@@ -12,9 +12,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PageDetailComponent implements OnInit {
   cv: Cv | null = null;
-  id: string | null = null;
+  id: number | null = null;
+  errorCv = false;
   constructor(
-    //private cvService: CvService,
+    private cvService: CvService,
     private activatedRoute: ActivatedRoute,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -26,21 +27,38 @@ export class PageDetailComponent implements OnInit {
       //this.cv = this.cvService.getCvById(params['id']);
       this.id = params['id'];
     });
-    this.http
-      .get<Cv>(`https://apilb.tridevs.net/api/personnes/${this.id}`)
-      .subscribe(
+    if (this.id) {
+      this.cvService.getCvById(this.id).subscribe(
         (cv) => {
-          console.log(cv);
           this.cv = cv;
         },
         (error) => {
+          this.errorCv = true;
           this.cv = null;
           this.toastr.error('Erreur lors de la récupération du cv');
         }
       );
+    }
   }
 
-  deleteCv(id: number) {
+  back() {
+    this.router.navigate(['cv']);
+  }
+
+  deleteCv() {
+    if (this.cv) {
+      this.cvService.deleteCv(this.cv.id).subscribe(
+        (response) => {
+          this.router.navigate(['cv']);
+        },
+        (error) => {
+          console.log(error);
+          this.toastr.error('Erreur lors de la suppression du cv');
+        }
+      );
+    }
+  }
+  /*deleteCv(id: number) {
     this.http.delete(`https://apilb.tridevs.net/api/personnes/${id}`).subscribe(
       () => {
         this.toastr.success('Cv supprimé avec succès');
@@ -53,5 +71,5 @@ export class PageDetailComponent implements OnInit {
         }, 2000);
       }
     );
-  }
+  }*/
 }

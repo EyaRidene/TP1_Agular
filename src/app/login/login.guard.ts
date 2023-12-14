@@ -3,7 +3,7 @@ import { AuthService } from '../auth.service';
 import { inject } from '@angular/core';
 import { catchError, map, of, tap } from 'rxjs';
 
-export const loginGuard: CanActivateFn = (route, state) => {
+/*export const loginGuard: CanActivateFn = (route, state) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
@@ -19,4 +19,4 @@ export const loginGuard: CanActivateFn = (route, state) => {
       return of(false);
     })
   );
-};
+};*/

@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  private authService: AuthService = inject(AuthService);
+  /*private authService: AuthService = inject(AuthService);
   constructor() {}
 
   router: Router = inject(Router);
@@ -33,6 +33,6 @@ export class LoginComponent {
         })
       )
       .subscribe();
-  }
-  //login(loginFormulaire: any) {}
+  }*/
+  login(loginFormulaire: any) {}
 }

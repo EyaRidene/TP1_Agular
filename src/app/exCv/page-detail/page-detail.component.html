@@ -1,3 +1,8 @@
+<div *ngIf="errorCv" class="container alert alert-danger">
+  <p style="font-size: 30px; font-weight: bold; text-align: center">
+    Cv n'est pas trouvé !
+  </p>
+</div>
 <div class="container mt-5" *ngIf="cv">
   <div class="row justify-content-center">
     <div class="col-lg-8">
@@ -32,10 +37,14 @@
               </tbody>
             </table>
           </div>
-          <div class="mt-4">
-            <button class="btn btn-danger mt-3" (click)="deleteCv(cv.id)">
+          <div
+            style="width: 30%; margin: auto"
+            class="text-center d-flex justify-content-between mt-4"
+          >
+            <button class="btn btn-danger" (click)="deleteCv()">
               Supprimer
             </button>
+            <button class="btn btn-primary" (click)="back()">Back</button>
           </div>
         </div>
       </div>

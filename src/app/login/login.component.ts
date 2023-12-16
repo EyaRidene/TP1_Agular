@@ -5,14 +5,20 @@ import { NgForm } from '@angular/forms';
 import { LoginData } from './model/loginData';
 import { tap } from 'rxjs';
 import { User } from './model/user.model';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
+  id: string = '';
   /*private authService: AuthService = inject(AuthService);
   constructor() {}
 
@@ -37,17 +43,24 @@ export class LoginComponent {
       )
       .subscribe();
   }*/
-  login(loginFormulaire: any) {
-    this.auth.login(loginFormulaire).subscribe(
-      (response) => {
-        const token =
-          '1Q5VSZ2XJrFZNL5IeYi4eCl55TDaLLALDwR1pftuYkiQHaC5RuowcHeqPoK2dXgX';
-        localStorage.setItem('token', token);
-        this.router.navigate(['cv']);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  login(dto: LoginData) {
+    console.log(dto);
+    return this.http
+      .post<Response>('https://apilb.tridevs.net/api/Users/login', dto)
+      .pipe(
+        tap((res) => {
+          console.log(res);
+          const token = {
+            token: 'test',
+            email: dto.email,
+            //id: userId,
+          };
+          console.log(token);
+          localStorage.setItem('user', 'test');
+          // @ts-ignore
+          this.user.next(token);
+          //this.loginUser(user);
+        })
+      );
   }
 }

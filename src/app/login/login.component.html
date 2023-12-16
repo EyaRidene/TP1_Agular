@@ -37,7 +37,7 @@
   <button
     class="btn btn-primary mb-2 mt-2"
     [disabled]="loginFormulaire.invalid"
-    (click)="login(loginFormulaire)"
+    (click)="login(loginFormulaire.value)"
   >
     Login
   </button>

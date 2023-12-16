@@ -17,7 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ROUTING } from './app.routing';
 import { PageDetailComponent } from './exCv/page-detail/page-detail.component';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { StyleComponent } from './directives/style/style.component';

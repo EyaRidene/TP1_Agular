@@ -33,6 +33,7 @@ import { HttpComponent } from './components/http/http.component';
 import { OperateursComponent } from './components/operateurs/operateurs.component';
 import { ProductComponent } from './components/products/product/product.component';
 import { ProductItemComponent } from './components/products/product-item/product-item.component';
+import { loginInterceptorProvider } from './components/interceptors/loginInterceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,7 @@ import { ProductItemComponent } from './components/products/product-item/product
     BrowserAnimationsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, loginInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

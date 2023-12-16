@@ -57,9 +57,7 @@ export class LoginComponent {
           };
           console.log(token);
           localStorage.setItem('user', 'test');
-          // @ts-ignore
-          this.user.next(token);
-          //this.loginUser(user);
+          this.router.navigate(['cv']);
         })
       );
   }

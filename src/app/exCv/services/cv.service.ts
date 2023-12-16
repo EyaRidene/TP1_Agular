@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Personne } from '../model/personne.model';
 import { Observable } from 'rxjs';
 
@@ -50,6 +50,11 @@ export class CvService {
   }*/
 
   addCv(cv: Cv): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const params = new HttpParams().set('access_token', token);
+      return this.http.post(this.link, cv, { params });
+    }
     return this.http.post(this.link, cv);
   }
 
